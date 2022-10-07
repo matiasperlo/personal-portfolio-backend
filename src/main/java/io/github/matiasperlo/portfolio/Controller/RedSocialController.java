@@ -4,19 +4,10 @@
  */
 package io.github.matiasperlo.portfolio.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 /**
  *
  * @author matia
  */
-@RestController
-public class HolaController {
-       
-    @GetMapping("/helloworld")
-    public String decirHola(){
-        return "hello world";
-    }
+public class RedSocialController {
     
 }
