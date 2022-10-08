@@ -4,8 +4,7 @@
  */
 package io.github.matiasperlo.portfolio.Model;
 
-import lombok.Getter;
-import lombok.Setter;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,7 +19,6 @@ import javax.persistence.Id;
  * @author matia
  */
 
-@Getter @Setter 
 @Entity
 @Table(name="users")
 public class Usuario implements Serializable {
