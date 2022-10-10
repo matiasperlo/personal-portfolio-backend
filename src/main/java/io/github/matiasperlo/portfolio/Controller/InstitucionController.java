@@ -24,13 +24,13 @@ import io.github.matiasperlo.portfolio.Model.Institucion;
 @RestController
 public class InstitucionController {
     
-    @Autowired
-    private IInstitucionService interInstitucion;
+    //@Autowired
+    //private IInstitucionService interInstitucion;
     
-    @GetMapping("/institucion/all")
-    public List<Institucion> getInstituciones(){
-        return interInstitucion.getInstituciones();
-    }
+    //@GetMapping("/institucion/all")
+    //public List<Institucion> getInstituciones(){
+    //    return interInstitucion.getInstituciones();
+    //}
     
     @PutMapping("/institucion/edit/{id}")
     public String editInstitucion(@PathVariable Long id){
