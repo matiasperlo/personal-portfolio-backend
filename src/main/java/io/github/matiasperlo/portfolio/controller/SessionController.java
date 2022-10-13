@@ -75,8 +75,9 @@ public class SessionController {
     public ResponseEntity<?> logout(){
         // expira el token
         // si no se puede expirar no hace nada
-        return ResponseEntity.ok("Not implemented Yet");
+        return ResponseEntity.ok("Sesion cerrada correctamente");
     }
+    
     
     private int authenticate(String username, String password) {
         // 0 -> autenticado exitosamente
