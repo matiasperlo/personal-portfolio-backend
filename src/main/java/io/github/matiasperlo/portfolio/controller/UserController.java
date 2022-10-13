@@ -8,6 +8,7 @@ import io.github.matiasperlo.portfolio.model.Usuario;
 import io.github.matiasperlo.portfolio.service.IUserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     
     @Autowired
-    private IUserService interUsuario;
+    private IUserService userService;
     
     @GetMapping("/prueba")
     public String getPrueba(){
@@ -36,19 +37,19 @@ public class UserController {
     
     @GetMapping("/all")
     public List<Usuario> getUsuarios(){
-        return interUsuario.getUsuarios();
+        return userService.getUsuarios();
     }
     
-    @PostMapping("/create")
-    public String createUsuario(@RequestBody Usuario user){
-        interUsuario.saveUsuario(user);
-        return "el usuario fue creado satisfactoriamente";
+    @PostMapping("/register")
+    public ResponseEntity<?> createUsuario(@RequestBody Usuario user){
+        userService.saveUsuario(user);
+        return ResponseEntity.ok("el usuario fue creado satisfactoriamente");
     }
     
     @DeleteMapping("/delete/{username}")
-    public String deleteUsuario(@PathVariable String username){
-        interUsuario.deleteUsuario(username);
-        return "la persona fue eliminada con exito";
+    public ResponseEntity<?> deleteUsuario(@PathVariable String username){
+        userService.deleteUsuario(username);
+        return ResponseEntity.ok("la persona fue eliminada con exito");
     }
     
     @PutMapping("/edit/{username}")
@@ -56,12 +57,12 @@ public class UserController {
             @RequestParam ("username") String nombre,
             @RequestParam ("password") String pwd){
         
-        Usuario user = interUsuario.findUsuario(username);
+        Usuario user = userService.findUsuario(username);
         
         user.setUsername(nombre);
         user.setPassword(pwd);
         
-        interUsuario.saveUsuario(user);
+        userService.saveUsuario(user);
         
         return user;
     }

@@ -18,27 +18,27 @@ import org.springframework.stereotype.Service;
 public class UserService implements IUserService {
     
     @Autowired
-    private UserDAO userRepository;
+    private UserDAO userDAO;
     
     @Override
     public List<Usuario> getUsuarios(){
-        List<Usuario> listaUsuarios = userRepository.findAll();
+        List<Usuario> listaUsuarios = userDAO.findAll();
         return listaUsuarios;
     }
     
     @Override
     public void saveUsuario(Usuario user){
-        userRepository.save(user);
+        userDAO.save(user);
     }
     
     @Override
     public void deleteUsuario(String username){
-        userRepository.deleteById(username);
+        userDAO.deleteById(username);
     }
     
     @Override
     public Usuario findUsuario(String username){
-        Usuario user = userRepository.findById(username).orElse(null);
+        Usuario user = userDAO.findById(username).orElse(null);
         return user;
     }
 }
