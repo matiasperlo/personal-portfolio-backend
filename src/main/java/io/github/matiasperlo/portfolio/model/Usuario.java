@@ -7,6 +7,8 @@ package io.github.matiasperlo.portfolio.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +21,8 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
     
     @Id
+    private int id;
+    
     @Column(name = "username", nullable = false, length = 25)
     private String username;
     

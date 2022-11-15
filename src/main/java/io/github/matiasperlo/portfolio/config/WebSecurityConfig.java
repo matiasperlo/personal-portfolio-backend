@@ -29,13 +29,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService myUserDetailsService;
-	@Autowired
+	
+        @Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(myUserDetailsService);
-	}
+
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -47,16 +45,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
+        
+        @Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(myUserDetailsService);
+	}
+        
 
+        
 	@Override
-	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		// httpSecurity.csrf().disable()   
+	protected void configure(HttpSecurity http) throws Exception {
+		// http.csrf().disable()   
 		// 		.authorizeRequests().antMatchers("/index.html", "/authenticate").permitAll().
 		// 				anyRequest().authenticated().and().
 		// 				exceptionHandling().and().sessionManagement()
 		// 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		// httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-			httpSecurity.csrf().disable();
+                http.csrf().disable();
 
 	}
 

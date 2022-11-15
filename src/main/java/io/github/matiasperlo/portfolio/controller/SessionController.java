@@ -40,13 +40,8 @@ public class SessionController {
 	@Autowired
 	private MyUserDetailsService userDetailsService;
 
-	@RequestMapping({ "/hello" })
-	public String firstPage() {
-		return "Hello World";
-	}
-
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+	@RequestMapping(value = "/auth", method = RequestMethod.POST)
+	public ResponseEntity<?> crearAuthToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
 		try {
 			authenticationManager.authenticate(

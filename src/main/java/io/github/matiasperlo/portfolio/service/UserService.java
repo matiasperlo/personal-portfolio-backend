@@ -32,13 +32,13 @@ public class UserService implements IUserService {
     }
     
     @Override
-    public void deleteUsuario(String username){
-        userDAO.deleteById(username);
+    public void deleteUsuario(Integer id){
+        userDAO.deleteById(id);
     }
     
     @Override
-    public Usuario findUsuario(String username){
-        Usuario user = userDAO.findById(username).orElse(null);
+    public Usuario findUsuario(Integer id){
+        Usuario user = userDAO.findById(id).orElse(null);
         return user;
     }
 }

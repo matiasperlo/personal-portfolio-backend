@@ -14,6 +14,6 @@ import java.util.List;
 public interface IUserService {
     public List<Usuario> getUsuarios();
     public void saveUsuario(Usuario user);
-    public void deleteUsuario(String username);
-    public Usuario findUsuario(String username);
+    public void deleteUsuario(Integer username);
+    public Usuario findUsuario(Integer username);
 } 

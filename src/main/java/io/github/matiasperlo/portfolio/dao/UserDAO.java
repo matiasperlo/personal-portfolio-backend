@@ -5,6 +5,7 @@
 package io.github.matiasperlo.portfolio.dao;
 
 import io.github.matiasperlo.portfolio.model.Usuario;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
  * @author matia
  */
 @Repository
-public interface UserDAO extends JpaRepository <Usuario, String> {
+public interface UserDAO extends JpaRepository <Usuario, Integer> {
+    Optional<Usuario> findByUsername(String username);
     
 }

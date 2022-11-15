@@ -40,24 +40,29 @@ public class UserController {
         return userService.getUsuarios();
     }
     
+    @GetMapping("/user/{id}")
+    public Usuario getUsuario(@PathVariable Integer id){
+        return userService.findUsuario(id);
+    }
+    
     @PostMapping("/register")
     public ResponseEntity<?> createUsuario(@RequestBody Usuario user){
         userService.saveUsuario(user);
         return ResponseEntity.ok("el usuario fue creado satisfactoriamente");
     }
     
-    @DeleteMapping("/delete/{username}")
-    public ResponseEntity<?> deleteUsuario(@PathVariable String username){
-        userService.deleteUsuario(username);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUsuario(@PathVariable Integer id){
+        userService.deleteUsuario(id);
         return ResponseEntity.ok("la persona fue eliminada con exito");
     }
     
-    @PutMapping("/edit/{username}")
-    public Usuario editUsuario(@PathVariable String username,
+    @PutMapping("/edit/{id}")
+    public Usuario editUsuario(@PathVariable Integer id,
             @RequestParam ("username") String nombre,
             @RequestParam ("password") String pwd){
         
-        Usuario user = userService.findUsuario(username);
+        Usuario user = userService.findUsuario(id);
         
         user.setUsername(nombre);
         user.setPassword(pwd);
