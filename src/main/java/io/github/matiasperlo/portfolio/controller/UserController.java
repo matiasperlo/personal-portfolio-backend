@@ -30,11 +30,6 @@ public class UserController {
     @Autowired
     private IUserService userService;
     
-    @GetMapping("/prueba")
-    public String getPrueba(){
-        return "algo";
-    }
-    
     @GetMapping("/all")
     public List<Usuario> getUsuarios(){
         return userService.getUsuarios();
