@@ -12,16 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author matia
  */
-@Controller //Se debe usar Controller en vez de RestController para las views
+@Controller
 public class AppController {
     
-    @GetMapping("/") // puede usarse cualquier annotation de mapping
+    @GetMapping("/")
     public String app(){
-        return "index.html"; //  html en static/ o public/
-    }
-    
-    @GetMapping("/pruebaget") 
-    public String prueba_get(){
-        return "getme.html"; 
+        return "index.html";
     }
 }
