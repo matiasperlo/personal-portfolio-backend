@@ -6,6 +6,7 @@ package io.github.matiasperlo.portfolio.controller;
 
 import io.github.matiasperlo.portfolio.model.Educacion;
 import io.github.matiasperlo.portfolio.service.EducacionService;
+import io.github.matiasperlo.portfolio.dto.ResponseMessage;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,13 +43,13 @@ public class EducacionController {
     @PostMapping("/register")
     public ResponseEntity<?> create(@RequestBody Educacion user){
         currentService.save(user);
-        return ResponseEntity.ok("el usuario fue creado satisfactoriamente");
+        return ResponseEntity.ok(new ResponseMessage("Registrado"));
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
         currentService.delete(id);
-        return ResponseEntity.ok("la persona fue eliminada con exito");
+        return ResponseEntity.ok(new ResponseMessage("Eliminado"));
     }
     
     @PutMapping("/edit/{id}")
@@ -57,11 +58,11 @@ public class EducacionController {
             @RequestBody Educacion exp){
         
         if(id != exp.getId() || currentService.findOne(id) == null){
-            return ResponseEntity.ok("experiencia no existe");
+            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
         }
         
         currentService.save(exp);
-        return ResponseEntity.ok("modificacion realizada con exito");
+        return ResponseEntity.ok(new ResponseMessage("modificacion realizada con exito"));
 
     }
 }

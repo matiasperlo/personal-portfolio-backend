@@ -4,6 +4,7 @@
  */
 package io.github.matiasperlo.portfolio.controller;
 
+import io.github.matiasperlo.portfolio.dto.ResponseMessage;
 import io.github.matiasperlo.portfolio.model.Rol;
 import io.github.matiasperlo.portfolio.service.RolService;
 import java.util.List;
@@ -42,13 +43,13 @@ public class RolController {
     @PostMapping("/register")
     public ResponseEntity<?> createRol(@RequestBody Rol user){
         rolService.saveRol(user);
-        return ResponseEntity.ok("el usuario fue creado satisfactoriamente");
+        return ResponseEntity.ok(new ResponseMessage("el usuario fue creado satisfactoriamente"));
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteRol(@PathVariable Integer id){
         rolService.deleteRol(id);
-        return ResponseEntity.ok("la persona fue eliminada con exito");
+        return ResponseEntity.ok(new ResponseMessage("la persona fue eliminada con exito"));
     }
     
     @PutMapping("/edit/{id}")
@@ -57,11 +58,11 @@ public class RolController {
             @RequestBody Rol exp){
         
         if(id != exp.getId() || rolService.findRol(id) == null){
-            return ResponseEntity.ok("experiencia no existe");
+            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
         }
         
         rolService.saveRol(exp);
-        return ResponseEntity.ok("modificacion realizada con exito");
+        return ResponseEntity.ok(new ResponseMessage("modificacion realizada con exito"));
 
     }
 }

@@ -28,7 +28,7 @@ public class Educacion {
     
     @ManyToOne
     @JoinColumn(name = "instituto", nullable = false)
-    private Instituto intituto;
+    private Instituto instituto;
     
     @Column(name = "inicio", nullable = false)
     private Date fechainicio;
@@ -45,8 +45,8 @@ public class Educacion {
         return titulo;
     }
 
-    public Instituto getIntituto() {
-        return intituto;
+    public Instituto getInstituto() {
+        return instituto;
     }
 
     public Date getFechainicio() {

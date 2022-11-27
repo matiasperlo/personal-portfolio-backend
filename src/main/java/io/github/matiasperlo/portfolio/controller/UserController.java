@@ -4,6 +4,7 @@
  */
 package io.github.matiasperlo.portfolio.controller;
 
+import io.github.matiasperlo.portfolio.dto.ResponseMessage;
 import io.github.matiasperlo.portfolio.model.Usuario;
 import io.github.matiasperlo.portfolio.service.IUserService;
 import java.util.List;
@@ -43,13 +44,13 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> createUsuario(@RequestBody Usuario user){
         userService.saveUsuario(user);
-        return ResponseEntity.ok("el usuario fue creado satisfactoriamente");
+        return ResponseEntity.ok(new ResponseMessage("el usuario fue creado satisfactoriamente"));
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable Integer id){
         userService.deleteUsuario(id);
-        return ResponseEntity.ok("la persona fue eliminada con exito");
+        return ResponseEntity.ok(new ResponseMessage("la persona fue eliminada con exito"));
     }
     
     @PutMapping("/edit/{id}")

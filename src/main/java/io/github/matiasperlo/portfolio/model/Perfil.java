@@ -24,7 +24,7 @@ public class Perfil {
     private String nombre;
     
     @Column(name = "rol", nullable = false, length = 20)
-    private String progreso;
+    private String rol;
     
     @Column(name = "foto_perfil", nullable = false, length = 100)
     private String foto_perfil;
@@ -46,8 +46,8 @@ public class Perfil {
         return nombre;
     }
 
-    public String getProgreso() {
-        return progreso;
+    public String getRol() {
+        return rol;
     }
 
     public String getFoto_perfil() {
