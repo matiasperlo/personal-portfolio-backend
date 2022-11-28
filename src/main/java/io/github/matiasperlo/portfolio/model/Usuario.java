@@ -35,6 +35,10 @@ public class Usuario implements Serializable {
         this.username = username;
         this.password = password;
     }
+
+    public int getId() {
+        return id;
+    }
     
     public String getUsername(){
         return username;

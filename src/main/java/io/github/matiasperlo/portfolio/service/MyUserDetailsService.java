@@ -27,10 +27,7 @@ public class MyUserDetailsService implements UserDetailsService {
     UserDAO userRepository;
     
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //return new User("foo", "foo",
-        //new ArrayList<>());
-        
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {        
         Optional<Usuario> user = userRepository.findByUsername(username);
         user.orElseThrow(() -> new UsernameNotFoundException("Not Found:" + username));
         return user.map(MyUserDetails:: new).get();

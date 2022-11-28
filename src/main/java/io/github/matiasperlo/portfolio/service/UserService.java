@@ -8,6 +8,7 @@ import io.github.matiasperlo.portfolio.dao.UserDAO;
 import io.github.matiasperlo.portfolio.model.Usuario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService implements IUserService {
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     
     @Autowired
     private UserDAO userDAO;
@@ -28,7 +32,11 @@ public class UserService implements IUserService {
     
     @Override
     public void saveUsuario(Usuario user){
-        userDAO.save(user);
+        Usuario usuario = new Usuario();
+        usuario.setUsername(user.getUsername());
+        usuario.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userDAO.save(usuario);
     }
     
     @Override

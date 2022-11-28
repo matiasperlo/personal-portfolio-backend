@@ -65,6 +65,33 @@ public class Perfil {
     public String getEmail() {
         return email;
     }
-    
-    
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public void setFoto_perfil(String foto_perfil) {
+        this.foto_perfil = foto_perfil;
+    }
+
+    public void setFoto_portada(String foto_portada) {
+        this.foto_portada = foto_portada;
+    }
+
+    public void setDesc_sobremi(String desc_sobremi) {
+        this.desc_sobremi = desc_sobremi;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
