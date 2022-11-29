@@ -21,6 +21,8 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private int id;
     
     @Column(name = "username", nullable = false, length = 25)
