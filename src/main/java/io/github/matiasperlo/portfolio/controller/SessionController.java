@@ -73,7 +73,7 @@ public class SessionController {
                                 );
 		final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-		return ResponseEntity.ok(new AuthenticationResponse(jwt));
+		return ResponseEntity.ok(new AuthenticationResponse(jwt, authenticationRequest.getUsername()));
 	}
         
         @PostMapping("/signup")
@@ -83,6 +83,6 @@ public class SessionController {
             final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
             final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-            return ResponseEntity.ok(new AuthenticationResponse(jwt));
+            return ResponseEntity.ok(new AuthenticationResponse(jwt, user.getUsername()));
     }
 }

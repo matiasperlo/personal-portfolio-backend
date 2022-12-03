@@ -62,7 +62,7 @@ public class ExperienciasController {
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> eliminarExperiencia(@PathVariable int id){
-        //TODO: completar
+        experienciaService.deleteExperiencia(id);
         return ResponseEntity.ok(new ResponseMessage("baja realizada con exito"));
 
     }
