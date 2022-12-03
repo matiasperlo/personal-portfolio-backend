@@ -4,6 +4,7 @@
  */
 package io.github.matiasperlo.portfolio.controller;
 
+import io.github.matiasperlo.portfolio.dto.ResponseMessage;
 import io.github.matiasperlo.portfolio.model.Experiencia;
 import io.github.matiasperlo.portfolio.service.ExperienciaService;
 import java.util.List;
@@ -42,7 +43,7 @@ public class ExperienciasController {
     @PostMapping("/register")
     public ResponseEntity<?> registrarExperiencia(@RequestBody Experiencia exp){
         experienciaService.registrarExperiencia(exp);
-        return ResponseEntity.ok("alta realizada con exito");
+        return ResponseEntity.ok(new ResponseMessage("alta realizada con exito"));
     }
     
     @PutMapping("/edit/{id}")
@@ -51,17 +52,18 @@ public class ExperienciasController {
             @RequestBody Experiencia exp){
         
         if(id != exp.getId() || experienciaService.getExperienciaById(id) == null){
-            return ResponseEntity.ok("experiencia no existe");
+            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
         }
         
         experienciaService.registrarExperiencia(exp);
-        return ResponseEntity.ok("modificacion realizada con exito");
+        return ResponseEntity.ok(new ResponseMessage("modificacion realizada con exito"));
 
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> eliminarExperiencia(@PathVariable int id){
-        return ResponseEntity.ok("baja realizada con exito");
+        experienciaService.deleteExperiencia(id);
+        return ResponseEntity.ok(new ResponseMessage("baja realizada con exito"));
 
     }
     

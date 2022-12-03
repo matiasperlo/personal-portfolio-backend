@@ -4,6 +4,7 @@
  */
 package io.github.matiasperlo.portfolio.controller;
 
+import io.github.matiasperlo.portfolio.dto.ResponseMessage;
 import io.github.matiasperlo.portfolio.model.Jornada;
 import io.github.matiasperlo.portfolio.service.JornadaService;
 import java.util.List;
@@ -42,7 +43,7 @@ public class JornadaController {
     @PostMapping("/register")
     public ResponseEntity<?> registrarJornada(@RequestBody Jornada jorn){
         jornadaService.saveJornada(jorn);
-        return ResponseEntity.ok("alta realizada con exito");
+        return ResponseEntity.ok(new ResponseMessage("alta realizada con exito"));
     }
     
     @PutMapping("/edit/{id}")
@@ -51,17 +52,17 @@ public class JornadaController {
             @RequestBody Jornada jorn){
         
         if(id != jorn.getId() || jornadaService.findJornada(id) == null){
-            return ResponseEntity.ok("experiencia no existe");
+            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
         }
         
         jornadaService.saveJornada(jorn);
-        return ResponseEntity.ok("modificacion realizada con exito");
+        return ResponseEntity.ok(new ResponseMessage("modificacion realizada con exito"));
 
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> eliminarJornada(@PathVariable int id){
-        return ResponseEntity.ok("baja realizada con exito");
+        return ResponseEntity.ok(new ResponseMessage("baja realizada con exito"));
 
     }
 }

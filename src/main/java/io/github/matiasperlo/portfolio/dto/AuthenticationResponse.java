@@ -13,12 +13,21 @@ import java.io.Serializable;
 public class AuthenticationResponse implements Serializable {
 
     private final String jwt;
+    private String username;
+    
 
-    public AuthenticationResponse(String jwt) {
+    public AuthenticationResponse(String jwt, String username) {
         this.jwt = jwt;
+        this.username = username;
     }
 
     public String getJwt() {
         return jwt;
     }
+
+    public String getUsername() {
+        return username;
+    }
+    
+    
 }

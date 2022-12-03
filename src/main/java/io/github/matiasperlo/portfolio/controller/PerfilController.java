@@ -5,6 +5,7 @@
 package io.github.matiasperlo.portfolio.controller;
 
 
+import io.github.matiasperlo.portfolio.dto.ResponseMessage;
 import io.github.matiasperlo.portfolio.model.Perfil;
 import io.github.matiasperlo.portfolio.service.PerfilService;
 import java.util.List;
@@ -43,13 +44,13 @@ public class PerfilController {
     @PostMapping("/register")
     public ResponseEntity<?> create(@RequestBody Perfil user){
         currentService.save(user);
-        return ResponseEntity.ok("el usuario fue creado satisfactoriamente");
+        return ResponseEntity.ok(new ResponseMessage("el usuario fue creado satisfactoriamente"));
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
         currentService.delete(id);
-        return ResponseEntity.ok("la persona fue eliminada con exito");
+        return ResponseEntity.ok(new ResponseMessage("la persona fue eliminada con exito"));
     }
     
     @PutMapping("/edit/{id}")
@@ -58,11 +59,11 @@ public class PerfilController {
             @RequestBody Perfil exp){
         
         if(id != exp.getId() || currentService.findOne(id) == null){
-            return ResponseEntity.ok("experiencia no existe");
+            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
         }
         
         currentService.save(exp);
-        return ResponseEntity.ok("modificacion realizada con exito");
+        return ResponseEntity.ok(new ResponseMessage("modificacion realizada con exito"));
 
     }
 }

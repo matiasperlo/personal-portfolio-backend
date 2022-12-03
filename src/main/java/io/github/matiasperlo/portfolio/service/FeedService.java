@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 public class FeedService {
     
     @Autowired
+    private PerfilService perfilService;
+    
+    @Autowired
     private ExperienciaService experienciaService;
     
     @Autowired
@@ -30,6 +33,7 @@ public class FeedService {
             
     public FeedResponse getFeed(){
         FeedResponse resp = new FeedResponse();
+        resp.setPerfil(perfilService.getAll().get(0));
         resp.setExperiencias(experienciaService.getExperiencias());
         resp.setEducaciones(educacionService.getAll());
         resp.setProyectos(proyectoService.getAll());

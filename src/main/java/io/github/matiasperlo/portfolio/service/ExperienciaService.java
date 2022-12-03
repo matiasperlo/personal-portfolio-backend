@@ -4,10 +4,15 @@
  */
 package io.github.matiasperlo.portfolio.service;
 
+import io.github.matiasperlo.portfolio.dao.EmpresaDAO;
 import io.github.matiasperlo.portfolio.dao.ExperienciaDAO;
+import io.github.matiasperlo.portfolio.dao.JornadaDAO;
+import io.github.matiasperlo.portfolio.dao.RolDAO;
+import io.github.matiasperlo.portfolio.model.Empresa;
 import io.github.matiasperlo.portfolio.model.Experiencia;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +26,15 @@ public class ExperienciaService {
     @Autowired
     private ExperienciaDAO experienciaDAO;
     
+    @Autowired 
+    private EmpresaDAO empresaDAO;
+    
+    @Autowired
+    private RolDAO rolDAO;
+    
+    @Autowired 
+    private JornadaDAO jornadaDAO;
+    
     public List<Experiencia> getExperiencias(){
        return experienciaDAO.findAll();
     }
@@ -28,9 +42,26 @@ public class ExperienciaService {
     public Experiencia getExperienciaById(int id) {
        return experienciaDAO.findById(id).orElse(null);
     }
-
+    
+    //@Transactional
     public void registrarExperiencia(Experiencia exp) {
-       experienciaDAO.save(exp);
+  
+        // guardar la empresa primero
+        if(exp.getEmpresa().getId() == 0){
+            empresaDAO.save(exp.getEmpresa());
+        }
+        
+        // guardar el rol primero
+        if(exp.getRol().getId() == 0){
+            rolDAO.save(exp.getRol());
+        }
+        
+        // guardar la jornada primero
+        if(exp.getJornada().getId() == 0){
+            jornadaDAO.save(exp.getJornada());
+        }
+        
+        experienciaDAO.save(exp);
     }
     
     public void deleteExperiencia(Integer id){

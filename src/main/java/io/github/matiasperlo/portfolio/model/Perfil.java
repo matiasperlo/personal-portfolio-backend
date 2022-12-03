@@ -6,6 +6,8 @@ package io.github.matiasperlo.portfolio.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,13 +20,15 @@ import javax.persistence.Table;
 public class Perfil {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private int id;
     
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
     
     @Column(name = "rol", nullable = false, length = 20)
-    private String progreso;
+    private String rol;
     
     @Column(name = "foto_perfil", nullable = false, length = 100)
     private String foto_perfil;
@@ -46,8 +50,8 @@ public class Perfil {
         return nombre;
     }
 
-    public String getProgreso() {
-        return progreso;
+    public String getRol() {
+        return rol;
     }
 
     public String getFoto_perfil() {
@@ -65,6 +69,33 @@ public class Perfil {
     public String getEmail() {
         return email;
     }
-    
-    
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public void setFoto_perfil(String foto_perfil) {
+        this.foto_perfil = foto_perfil;
+    }
+
+    public void setFoto_portada(String foto_portada) {
+        this.foto_portada = foto_portada;
+    }
+
+    public void setDesc_sobremi(String desc_sobremi) {
+        this.desc_sobremi = desc_sobremi;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
