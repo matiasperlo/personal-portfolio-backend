@@ -49,4 +49,13 @@ public class UserService implements IUserService {
         Usuario user = userDAO.findById(id).orElse(null);
         return user;
     }
+    
+    public Usuario findUsuarioByUsername(String username) {
+        Usuario user = userDAO.findByUsername(username).orElse(null);
+        return user;
+    }
+    
+    public boolean exists(String username){
+        return findUsuarioByUsername(username) != null;
+    }
 }
