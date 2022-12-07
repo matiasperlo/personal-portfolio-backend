@@ -52,9 +52,9 @@ public class ExperienciaService {
         }
         
         // guardar el rol primero
-        if(exp.getRol().getId() == 0){
-            rolDAO.save(exp.getRol());
-        }
+        //if(exp.getPuesto().getId() == 0){
+        //    rolDAO.save(exp.getPuesto());
+        //}
         
         // guardar la jornada primero
         if(exp.getJornada().getId() == 0){

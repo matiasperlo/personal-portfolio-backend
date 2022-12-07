@@ -31,8 +31,8 @@ public class Experiencia implements Serializable {
     
     // Relaciones con otras tablas
     @ManyToOne
-    @JoinColumn(name="rol", nullable = false)
-    private Rol rol;
+    @JoinColumn(name="puesto", nullable = false)
+    private Puesto puesto;
     
     @ManyToOne
     @JoinColumn(name="empresa", nullable = false)
@@ -53,8 +53,8 @@ public class Experiencia implements Serializable {
         return id;
     }
     
-    public Rol getRol(){
-        return rol;
+    public Puesto getPuesto(){
+        return puesto;
     }
     
     public Empresa getEmpresa(){
@@ -74,8 +74,8 @@ public class Experiencia implements Serializable {
     }
     
     
-    public void setRol(Rol rol){
-        this.rol = rol;
+    public void setPuesto(Puesto puesto){
+        this.puesto = puesto;
     }
     
     public void setEmpresa(Empresa empresa){
