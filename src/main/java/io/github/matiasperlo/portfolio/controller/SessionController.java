@@ -8,6 +8,7 @@ import io.github.matiasperlo.portfolio.config.JwtUtil;
 import io.github.matiasperlo.portfolio.dto.AuthenticationErrorResponse;
 import io.github.matiasperlo.portfolio.dto.AuthenticationRequest;
 import io.github.matiasperlo.portfolio.dto.AuthenticationResponse;
+import io.github.matiasperlo.portfolio.dto.PrivilegeRequest;
 import io.github.matiasperlo.portfolio.model.Usuario;
 import io.github.matiasperlo.portfolio.service.MyUserDetailsService;
 import io.github.matiasperlo.portfolio.service.UserService;
@@ -84,6 +85,17 @@ public class SessionController {
 
             return ResponseEntity.ok(new AuthenticationResponse(jwt, request.getUsername()));
 	}
+        
+        @PostMapping("/user-roles")
+        public ResponseEntity<?> consultarPrivilegios(@RequestBody PrivilegeRequest prq){
+            if( prq.getJwt() == null || prq.getJwt() == "" ){
+                return ResponseEntity.ok("");
+            }
+            
+            String username = jwtTokenUtil.extractUsername(prq.getJwt());
+            Usuario user = userService.findUsuarioByUsername(username);
+            return ResponseEntity.ok(user.getRol());
+        }
         
         @PostMapping("/signup")
         public ResponseEntity<?> createUsuario(@RequestBody Usuario user){

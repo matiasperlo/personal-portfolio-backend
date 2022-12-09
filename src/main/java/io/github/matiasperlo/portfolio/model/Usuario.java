@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,6 +32,10 @@ public class Usuario implements Serializable {
     
     @Column(name = "password", nullable = false, length = 32)   
     private String password;
+    
+    @ManyToOne
+    @JoinColumn(name= "rol", nullable=false)
+    private Rol rol;
     
     public Usuario(){}
     
@@ -57,5 +63,17 @@ public class Usuario implements Serializable {
     public void setPassword(String passwd){
         this.password = passwd;
     }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+    
+    
+    
+    
 }
 
