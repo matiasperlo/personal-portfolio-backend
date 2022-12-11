@@ -38,4 +38,12 @@ public class RolService {
     public void deleteRol(Integer id){
         rolDAO.deleteById(id);
     }
+    
+    public Rol findByRolName(String name){
+        return rolDAO.findByRol(name).orElse(null);
+    }
+    
+    public Rol getUserRol(){
+        return this.findByRolName("ROLE_USER");
+    }
 }

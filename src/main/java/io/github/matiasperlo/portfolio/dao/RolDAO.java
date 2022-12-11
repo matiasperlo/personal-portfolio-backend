@@ -5,6 +5,7 @@
 package io.github.matiasperlo.portfolio.dao;
 
 import io.github.matiasperlo.portfolio.model.Rol;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,4 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface RolDAO extends JpaRepository<Rol, Integer>{
     
+    Optional<Rol> findByRol(String rol);
 }

@@ -24,6 +24,9 @@ public class UserService implements IUserService {
     @Autowired
     private UserDAO userDAO;
     
+    @Autowired
+    private RolService rolService;
+    
     @Override
     public List<Usuario> getUsuarios(){
         List<Usuario> listaUsuarios = userDAO.findAll();
@@ -35,6 +38,20 @@ public class UserService implements IUserService {
         Usuario usuario = new Usuario();
         usuario.setUsername(user.getUsername());
         usuario.setPassword(passwordEncoder.encode(user.getPassword()));
+        
+        System.out.println("========================");
+        System.out.println("Trying identify role");
+
+        System.out.println(user.getRol());
+        if(user.getRol() == null){
+            user.setRol(rolService.getUserRol());
+            System.out.println("Trying identify role");
+            System.out.println(user.getRol());
+
+        }
+        System.out.println("========================");
+
+        usuario.setRol(user.getRol());
 
         userDAO.save(usuario);
     }
@@ -48,5 +65,14 @@ public class UserService implements IUserService {
     public Usuario findUsuario(Integer id){
         Usuario user = userDAO.findById(id).orElse(null);
         return user;
+    }
+    
+    public Usuario findUsuarioByUsername(String username) {
+        Usuario user = userDAO.findByUsername(username).orElse(null);
+        return user;
+    }
+    
+    public boolean exists(String username){
+        return findUsuarioByUsername(username) != null;
     }
 }
