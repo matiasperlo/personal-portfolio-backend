@@ -52,7 +52,7 @@ public class JornadaController {
             @RequestBody Jornada jorn){
         
         if(id != jorn.getId() || jornadaService.findJornada(id) == null){
-            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
+            return ResponseEntity.ok(new ResponseMessage("Jornada no existe"));
         }
         
         jornadaService.saveJornada(jorn);
