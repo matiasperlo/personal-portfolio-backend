@@ -42,13 +42,13 @@ public class HabilidadController {
     @PostMapping("/register")
     public ResponseEntity<?> create(@RequestBody Habilidad user){
         currentService.save(user);
-        return ResponseEntity.ok(new ResponseMessage("el usuario fue creado satisfactoriamente"));
+        return ResponseEntity.ok(new ResponseMessage("la Habilidad fue creado satisfactoriamente"));
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
         currentService.delete(id);
-        return ResponseEntity.ok(new ResponseMessage("la persona fue eliminada con exito"));
+        return ResponseEntity.ok(new ResponseMessage("la Habilidad fue eliminada con exito"));
     }
     
     @PutMapping("/edit/{id}")
@@ -57,7 +57,7 @@ public class HabilidadController {
             @RequestBody Habilidad exp){
         
         if(id != exp.getId() || currentService.findOne(id) == null){
-            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
+            return ResponseEntity.ok(new ResponseMessage("Habilidad no existe"));
         }
         
         currentService.save(exp);

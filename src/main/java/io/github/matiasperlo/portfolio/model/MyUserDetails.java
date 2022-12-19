@@ -4,6 +4,7 @@
  */
 package io.github.matiasperlo.portfolio.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,14 +15,29 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author matia
  */
 public class MyUserDetails implements UserDetails {
+    
+    public class Authority implements GrantedAuthority{
+        
+        private String auth;
 
+        public Authority(String auth) {
+            this.auth = auth;
+        }        
+        
+        @Override
+        public String getAuthority() {
+            return this.auth;
+        }
+    }
+    
     private String userName;
     private String password;
-    private List<GrantedAuthority> authorities;
+    private Rol rol;
 
     public MyUserDetails(Usuario user) {
         this.userName = user.getUsername();
         this.password = user.getPassword();
+        this.rol = user.getRol();
     }
 
     @Override
@@ -36,7 +52,9 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<Authority> auths = new ArrayList();
+        auths.add(new Authority(this.rol.getRol()));
+        return auths;
     }
 
     @Override

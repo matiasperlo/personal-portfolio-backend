@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author matia
  */
 @Service
-public class UserService implements IUserService {
+public class UserService {
     
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -27,13 +27,11 @@ public class UserService implements IUserService {
     @Autowired
     private RolService rolService;
     
-    @Override
     public List<Usuario> getUsuarios(){
         List<Usuario> listaUsuarios = userDAO.findAll();
         return listaUsuarios;
     }
     
-    @Override
     public void saveUsuario(Usuario user){
         Usuario usuario = new Usuario();
         usuario.setUsername(user.getUsername());
@@ -56,12 +54,10 @@ public class UserService implements IUserService {
         userDAO.save(usuario);
     }
     
-    @Override
     public void deleteUsuario(Integer id){
         userDAO.deleteById(id);
     }
     
-    @Override
     public Usuario findUsuario(Integer id){
         Usuario user = userDAO.findById(id).orElse(null);
         return user;

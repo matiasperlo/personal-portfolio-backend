@@ -6,7 +6,7 @@ package io.github.matiasperlo.portfolio.controller;
 
 import io.github.matiasperlo.portfolio.dto.ResponseMessage;
 import io.github.matiasperlo.portfolio.model.Usuario;
-import io.github.matiasperlo.portfolio.service.IUserService;
+import io.github.matiasperlo.portfolio.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     
     @Autowired
-    private IUserService userService;
+    private UserService userService;
     
     @GetMapping("/all")
     public List<Usuario> getUsuarios(){
@@ -42,7 +42,7 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable Integer id){
         userService.deleteUsuario(id);
-        return ResponseEntity.ok(new ResponseMessage("la persona fue eliminada con exito"));
+        return ResponseEntity.ok(new ResponseMessage("el usuario fue eliminada con exito"));
     }
     
     @PutMapping("/edit/{id}")

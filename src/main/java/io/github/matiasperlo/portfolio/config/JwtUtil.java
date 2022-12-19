@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JwtUtil {
 
-    private final String SECRET_KEY = "secret";
+    private final String SECRET_KEY = "argentina_campeon";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

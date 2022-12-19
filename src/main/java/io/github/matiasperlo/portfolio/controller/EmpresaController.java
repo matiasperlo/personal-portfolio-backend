@@ -43,13 +43,13 @@ public class EmpresaController {
     @PostMapping("/register")
     public ResponseEntity<?> create(@RequestBody Empresa user){
         currentService.save(user);
-        return ResponseEntity.ok(new ResponseMessage("el usuario fue creado satisfactoriamente"));
+        return ResponseEntity.ok(new ResponseMessage("Empresa creada satisfactoriamente"));
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
         currentService.delete(id);
-        return ResponseEntity.ok(new ResponseMessage("la persona fue eliminada con exito"));
+        return ResponseEntity.ok(new ResponseMessage("Empresa eliminada con exito"));
     }
     
     @PutMapping("/edit/{id}")
@@ -58,7 +58,7 @@ public class EmpresaController {
             @RequestBody Empresa exp){
         
         if(id != exp.getId() || currentService.findOne(id) == null){
-            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
+            return ResponseEntity.ok(new ResponseMessage("Empresa no existe"));
         }
         
         currentService.save(exp);

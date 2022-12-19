@@ -43,13 +43,13 @@ public class RolController {
     @PostMapping("/register")
     public ResponseEntity<?> createRol(@RequestBody Rol user){
         rolService.saveRol(user);
-        return ResponseEntity.ok(new ResponseMessage("el usuario fue creado satisfactoriamente"));
+        return ResponseEntity.ok(new ResponseMessage("el Rol fue creado satisfactoriamente"));
     }
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteRol(@PathVariable Integer id){
         rolService.deleteRol(id);
-        return ResponseEntity.ok(new ResponseMessage("la persona fue eliminada con exito"));
+        return ResponseEntity.ok(new ResponseMessage("el Rol fue eliminado con exito"));
     }
     
     @PutMapping("/edit/{id}")
@@ -58,7 +58,7 @@ public class RolController {
             @RequestBody Rol exp){
         
         if(id != exp.getId() || rolService.findRol(id) == null){
-            return ResponseEntity.ok(new ResponseMessage("experiencia no existe"));
+            return ResponseEntity.ok(new ResponseMessage("Rol no existe"));
         }
         
         rolService.saveRol(exp);
