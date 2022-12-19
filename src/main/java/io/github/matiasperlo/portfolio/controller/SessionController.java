@@ -54,7 +54,7 @@ public class SessionController {
                 authError.setUserNotExists(true);
                 authError.setDescripcion("User Don't Exist");
                 return new ResponseEntity(
-                        authError, null, HttpStatus.UNAUTHORIZED);
+                        authError, null, HttpStatus.OK);
             }
             
             try {
@@ -73,7 +73,7 @@ public class SessionController {
                 authError.setBadPassword(true);
                 authError.setDescripcion("Bad Password");
                 return new ResponseEntity(
-                        authError, null, HttpStatus.UNAUTHORIZED);
+                        authError, null, HttpStatus.OK);
             }
 
             // La autenticacion salio bien y se crea el token.
