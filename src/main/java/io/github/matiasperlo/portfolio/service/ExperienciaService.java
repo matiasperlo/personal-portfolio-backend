@@ -7,6 +7,7 @@ package io.github.matiasperlo.portfolio.service;
 import io.github.matiasperlo.portfolio.dao.EmpresaDAO;
 import io.github.matiasperlo.portfolio.dao.ExperienciaDAO;
 import io.github.matiasperlo.portfolio.dao.JornadaDAO;
+import io.github.matiasperlo.portfolio.dao.PuestoDAO;
 import io.github.matiasperlo.portfolio.dao.RolDAO;
 import io.github.matiasperlo.portfolio.model.Empresa;
 import io.github.matiasperlo.portfolio.model.Experiencia;
@@ -30,7 +31,7 @@ public class ExperienciaService {
     private EmpresaDAO empresaDAO;
     
     @Autowired
-    private RolDAO rolDAO;
+    private PuestoDAO puestoDAO;
     
     @Autowired 
     private JornadaDAO jornadaDAO;
@@ -43,7 +44,7 @@ public class ExperienciaService {
        return experienciaDAO.findById(id).orElse(null);
     }
     
-    //@Transactional
+    @Transactional
     public void registrarExperiencia(Experiencia exp) {
   
         // guardar la empresa primero
@@ -52,9 +53,9 @@ public class ExperienciaService {
         }
         
         // guardar el rol primero
-        //if(exp.getPuesto().getId() == 0){
-        //    rolDAO.save(exp.getPuesto());
-        //}
+        if(exp.getPuesto().getId() == 0){
+            puestoDAO.save(exp.getPuesto());
+        }
         
         // guardar la jornada primero
         if(exp.getJornada().getId() == 0){
